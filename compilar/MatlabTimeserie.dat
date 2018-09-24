@@ -1,0 +1,49 @@
+WORK_PATH                                : C:\Aplica\matlabtimeseries_last\
+
+!MAIL_SERVER                              : smtp.gmail.com
+!MAIL_SENDER_NAME                         : PCOMS - TimeSeries
+!MAIL_SENDER_ADDRESS                      : mailing.maretec@gmail.com
+
+START                         : 2018 06 29 0 0 0
+END                           : 2018 06 30 0 0 0
+
+FORECAST : 0
+DAYS_BEFORE : 2
+DAYS_AFTER : 2
+
+
+<begin_out_email_list>
+Ligia Pinto <ligia.pinto@ist.utl.pt>
+<end_out_email_list>
+
+
+!SUCCESS_FILE                             : D:\aplica\BIOPCOMS\MOHID_SUCCESS.dat
+
+MOHID_PATH                               : \\PCOMS-BIO\BackUp\BIOPCOMSUP\Portugal\Results_TimeSeries\
+
+DATA_PATH                                : C:\Aplica\matlabtimeseries_last\data_nc1\
+
+BACKUP_PATH                              : C:\Aplica\matlabtimeseries_last\backup\
+
+PUBLISH_PATH                             : C:\Aplica\matlabtimeseries_last\publish\
+
+BACKUP_PUBLISH                           : C:\Aplica\matlabtimeseries_last\backup\
+
+DOWNLOAD_DATA       : 1
+
+PLOT_DATA          : 0
+
+PLOT_MODEL         : 0
+
+STATISTIC          : 0
+
+INTERVAL_TS      : 0
+ 
+LEVEL         : 1
+
+TEMP           : 0
+
+SAL            : 1
+
+VEL          : 0
+
