@@ -1,4 +1,4 @@
-function [s, ncol] = strsplit(str);
+function [s, ncol] = strsplitMH(str);
 %splits a string into an array of strings
 %considering the delimiter as space
 %MOHID Water Modelling System.

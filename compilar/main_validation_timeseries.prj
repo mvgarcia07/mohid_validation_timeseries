@@ -1,0 +1,127 @@
+<deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
+  <configuration build-checksum="1297310811" file="C:\Angie\MATLAB\compilar-Angie\main_validation_timeseries.prj" location="C:\Angie\MATLAB\compilar-Angie" name="main_validation_timeseries" preferred-package-location="C:\Angie\MATLAB\compilar-Angie\main_validation_timeseries\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
+    <param.appname>main_validation_timeseries</param.appname>
+    <param.icon />
+    <param.icons />
+    <param.version>1.0</param.version>
+    <param.authnamewatermark>MARETEC</param.authnamewatermark>
+    <param.email />
+    <param.company>MARETEC</param.company>
+    <param.summary />
+    <param.description />
+    <param.screenshot />
+    <param.guid />
+    <param.installpath.string>\MARETEC\main_validation_timeseries\</param.installpath.string>
+    <param.installpath.combo>option.installpath.programfiles</param.installpath.combo>
+    <param.logo />
+    <param.install.notes />
+    <param.target.install.notes />
+    <param.intermediate>${PROJECT_ROOT}\main_validation_timeseries\for_testing</param.intermediate>
+    <param.files.only>${PROJECT_ROOT}\main_validation_timeseries\for_redistribution_files_only</param.files.only>
+    <param.output>${PROJECT_ROOT}\main_validation_timeseries\for_redistribution</param.output>
+    <param.logdir>${PROJECT_ROOT}\main_validation_timeseries</param.logdir>
+    <param.enable.clean.build>false</param.enable.clean.build>
+    <param.user.defined.mcr.options />
+    <param.target.type>subtarget.standalone</param.target.type>
+    <param.support.packages />
+    <param.web.mcr>true</param.web.mcr>
+    <param.package.mcr>false</param.package.mcr>
+    <param.no.mcr>false</param.no.mcr>
+    <param.web.mcr.name>MyAppInstaller_web</param.web.mcr.name>
+    <param.package.mcr.name>MyAppInstaller_mcr</param.package.mcr.name>
+    <param.no.mcr.name>MyAppInstaller_app</param.no.mcr.name>
+    <param.windows.command.prompt>true</param.windows.command.prompt>
+    <param.create.log>false</param.create.log>
+    <param.log.file />
+    <param.native.matlab>false</param.native.matlab>
+    <param.checkbox>false</param.checkbox>
+    <param.example />
+    <param.help.text />
+    <unset>
+      <param.icon />
+      <param.icons />
+      <param.version />
+      <param.authnamewatermark />
+      <param.email />
+      <param.company />
+      <param.summary />
+      <param.description />
+      <param.screenshot />
+      <param.guid />
+      <param.installpath.string />
+      <param.installpath.combo />
+      <param.logo />
+      <param.target.install.notes />
+      <param.intermediate />
+      <param.files.only />
+      <param.output />
+      <param.logdir />
+      <param.enable.clean.build />
+      <param.user.defined.mcr.options />
+      <param.target.type />
+      <param.support.packages />
+      <param.web.mcr />
+      <param.package.mcr />
+      <param.no.mcr />
+      <param.web.mcr.name />
+      <param.package.mcr.name />
+      <param.no.mcr.name />
+      <param.windows.command.prompt />
+      <param.create.log />
+      <param.log.file />
+      <param.native.matlab />
+      <param.checkbox />
+      <param.example />
+      <param.help.text />
+    </unset>
+    <fileset.main>
+      <file>${PROJECT_ROOT}\main_validation_timeseries.m</file>
+    </fileset.main>
+    <fileset.resources />
+    <fileset.package />
+    <fileset.depfun>
+      <file>${PROJECT_ROOT}\cat_myocean_buoys.m</file>
+      <file>${PROJECT_ROOT}\convertMyOceanBuoysToMOHIDTimeSerie_all_angie.m</file>
+      <file>${PROJECT_ROOT}\dateNtick.m</file>
+      <file>${PROJECT_ROOT}\do_localmap.m</file>
+      <file>${PROJECT_ROOT}\error_timeseries.dat</file>
+      <file>${PROJECT_ROOT}\getdata.m</file>
+      <file>${PROJECT_ROOT}\getftp_myocean_buoys_new.m</file>
+      <file>${PROJECT_ROOT}\getmodelprop.m</file>
+      <file>${PROJECT_ROOT}\getplot.m</file>
+      <file>${PROJECT_ROOT}\myfeather.m</file>
+      <file>${PROJECT_ROOT}\peakdet.m</file>
+      <file>${PROJECT_ROOT}\plot_comparison.m</file>
+      <file>${PROJECT_ROOT}\plot_comparison_level.m</file>
+      <file>${PROJECT_ROOT}\plot_comparison_velo.m</file>
+      <file>${PROJECT_ROOT}\station_id.dat</file>
+      <file>${PROJECT_ROOT}\strsplitMH.m</file>
+      <file>${PROJECT_ROOT}\Tide_station_id.dat</file>
+    </fileset.depfun>
+    <build-deliverables>
+      <file location="${PROJECT_ROOT}\main_validation_timeseries\for_testing" name="splash.png" optional="false">C:\Angie\MATLAB\compilar-Angie\main_validation_timeseries\for_testing\splash.png</file>
+      <file location="${PROJECT_ROOT}\main_validation_timeseries\for_testing" name="readme.txt" optional="true">C:\Angie\MATLAB\compilar-Angie\main_validation_timeseries\for_testing\readme.txt</file>
+      <file location="${PROJECT_ROOT}\main_validation_timeseries\for_testing" name="main_validation_timeseries.exe" optional="false">C:\Angie\MATLAB\compilar-Angie\main_validation_timeseries\for_testing\main_validation_timeseries.exe</file>
+    </build-deliverables>
+    <workflow />
+    <matlab>
+      <root>C:\Program Files\MATLAB\R2017b</root>
+      <toolboxes />
+    </matlab>
+    <platform>
+      <unix>false</unix>
+      <mac>false</mac>
+      <windows>true</windows>
+      <win2k>false</win2k>
+      <winxp>false</winxp>
+      <vista>false</vista>
+      <linux>false</linux>
+      <solaris>false</solaris>
+      <osver>6.1</osver>
+      <os32>false</os32>
+      <os64>true</os64>
+      <arch>win64</arch>
+      <matlab>true</matlab>
+    </platform>
+  </configuration>
+</deployment-project>

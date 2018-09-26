@@ -39,7 +39,7 @@ function [modeldata, time_values,model_index] = getmodelprop(file,inidate,enddat
         if found_ini_date;
             delim = strfind(line,':');
             ini_date = line(delim+1:end);
-            [date_vec, n_values] = strsplit(ini_date);
+            [date_vec, n_values] = strsplitMH(ini_date);
             year = str2num(char(date_vec(1)));
             month = str2num(char(date_vec(2)));
             day = str2num(char(date_vec(3)));
@@ -51,7 +51,7 @@ function [modeldata, time_values,model_index] = getmodelprop(file,inidate,enddat
         end
     end
     %put header into an array
-    [names, n] = strsplit(header);
+    [names, n] = strsplitMH(header);
 
     %read data columns
     [data] = textscan(mfid,'%f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f');

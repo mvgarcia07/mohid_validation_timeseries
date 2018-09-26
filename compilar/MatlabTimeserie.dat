@@ -1,18 +1,19 @@
-WORK_PATH                                : C:\Aplica\matlabtimeseries_last\
+WORK_PATH                                : C:\Aplica\DataCenter\
 
 !MAIL_SERVER                              : smtp.gmail.com
 !MAIL_SENDER_NAME                         : PCOMS - TimeSeries
 !MAIL_SENDER_ADDRESS                      : mailing.maretec@gmail.com
 
-START                         : 2018 06 29 0 0 0
-END                           : 2018 06 30 0 0 0
+START                         : 2018 04 02 0 0 0
+END                           : 2018 04 03 0 0 0
 
-FORECAST : 0
+FORECAST    : 0
 DAYS_BEFORE : 2
-DAYS_AFTER : 2
+DAYS_AFTER  : 2
 
 
 <begin_out_email_list>
+															
 Ligia Pinto <ligia.pinto@ist.utl.pt>
 <end_out_email_list>
 
@@ -21,13 +22,13 @@ Ligia Pinto <ligia.pinto@ist.utl.pt>
 
 MOHID_PATH                               : \\PCOMS-BIO\BackUp\BIOPCOMSUP\Portugal\Results_TimeSeries\
 
-DATA_PATH                                : C:\Aplica\matlabtimeseries_last\data_nc1\
+DATA_PATH                                : C:\Aplica\DataCenter\DadosBase\Oceanografia\Fixed_Stations\Daily\
 
-BACKUP_PATH                              : C:\Aplica\matlabtimeseries_last\backup\
+BACKUP_PATH                              : C:\Aplica\Mohid\TimeSeries\backup\
 
-PUBLISH_PATH                             : C:\Aplica\matlabtimeseries_last\publish\
+PUBLISH_PATH                             : C:\Aplica\Mohid\TimeSeries\publish\
 
-BACKUP_PUBLISH                           : C:\Aplica\matlabtimeseries_last\backup\
+BACKUP_PUBLISH                           : C:\Aplica\Mohid\TimeSeries\backup\
 
 DOWNLOAD_DATA       : 1
 
@@ -39,7 +40,7 @@ STATISTIC          : 0
 
 INTERVAL_TS      : 0
  
-LEVEL         : 1
+LEVEL         : 0
 
 TEMP           : 0
 

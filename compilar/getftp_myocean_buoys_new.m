@@ -123,7 +123,7 @@ global plot_data stareg flag_srw buoy_path1 station
                        '/outgoing/rcbono/myocean'}, ...            
              'ftpHandle', { 1, 1, 1, 1} ...
             );
-    
+     
     %reference time is today
     today = datestr(date,'yyyymmdd');
 
@@ -191,7 +191,7 @@ global plot_data stareg flag_srw buoy_path1 station
 
         gfile = constructMonthlyFile( myoProduct(1), ...
                         [fstartdate(1:6),'_',fenddate(1:6)] ...
-                    );
+                    )
 
     end
 
@@ -201,7 +201,7 @@ global plot_data stareg flag_srw buoy_path1 station
       myoPartners(partnerId).ftpHandle = ftp(   myoPartners(partnerId).ftp, ...
                         myoPartners(partnerId).ftpuser, ...
                         myoPartners(partnerId).ftppass ...
-                    );
+                    )
 	catch
 	  disp('an error occoured in the ftp connection partnerID = 1')
 	  mfidi = fopen('error_timeseries.dat','a');
@@ -239,8 +239,9 @@ global plot_data stareg flag_srw buoy_path1 station
 			  end 
 		   else
 		      [file_out,Mstr,Nstr]=convertMyOceanBuoysToMOHIDTimeSerie_all(file);
+              
 			  buoy_folder=[buoy_path1,fdate(1:4),'-',fdate(5:6),'\'];
-			  if ((Mstr==1) & (Nstr>1))
+			  if ((Mstr==1) && (Nstr>1))
 			       %allfile1=[station,'.srw'];
                    allfile1=[station,'.ets'];
 				   allfile=[station,'.nc'];
@@ -255,7 +256,7 @@ global plot_data stareg flag_srw buoy_path1 station
 			       delete('*.ets');
 				   delete('*.nc');
 				   
-			  elseif ((Mstr~=1) | (Nstr==1))
+			  elseif ((Mstr~=1) || (Nstr==1))
 			      % copyfile(file,gfile,'f');
 				   allfile=[station,'.nc'];
 				   copyfile(file,allfile,'f');
@@ -370,6 +371,7 @@ global plot_data stareg flag_srw buoy_path1 station
 			  end 
 			else
 			  [file_out,Mstr,Nstr]=convertMyOceanBuoysToMOHIDTimeSerie_all(file);
+
 			  ffdate=datenum(fenddate,'yyyymmdd')+1;
 			  fffdate=datestr(ffdate,'yyyymmdd');
 			  buoy_folder=[buoy_path1,fenddate(1:4),'-',fenddate(5:6),'-',fenddate(7:8),'_',fffdate(1:4),'-',fffdate(5:6),'-',fffdate(7:8),'\'];
@@ -404,6 +406,7 @@ global plot_data stareg flag_srw buoy_path1 station
 			    end
 		    else
 			    [file_out,Mstr,Nstr]=convertMyOceanBuoysToMOHIDTimeSerie_all(file);
+
 				ffdate=datenum(fdate,'yyyymmdd')+1;
 			    fffdate=datestr(ffdate,'yyyymmdd');
 				buoy_folder=[buoy_path1,fdate(1:4),'-',fdate(5:6),'-',fdate(7:8),'_',fffdate(1:4),'-',fffdate(5:6),'-',fffdate(7:8),'\'];
@@ -554,6 +557,8 @@ global plot_data
 function [file,nodata] = getFtpMyOceanMonth(myoFtp, myo, fdate)
     fpath = constructMonthlyPath(myoFtp,myo,fdate);
     file = constructMonthlyFile(myo,fdate);
+    myoFtp.ftpHandle
+    fpath
     cd(myoFtp.ftpHandle,fpath);
 	if (~isempty(dir(myoFtp.ftpHandle, [fpath,'/',file])) ~= 0)
         mget (myoFtp.ftpHandle, file);

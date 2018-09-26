@@ -2,7 +2,7 @@
 %read information from MatlabTimeserie.dat
 global plot_data plot_model statistic down_data property plot_level plot_png str1 ini_date end_datefi publish forecast1 vscale_int buoy_path1
 
-try
+% try
 mfidi = fopen('error_timeseries.dat','w');
 fclose(mfidi);
 plot_png='0';
@@ -32,117 +32,117 @@ mfid = fopen('MatlabTimeserie.dat');
 		if work
 		   delim = strfind(line,':');
 		   work_date= line(delim+1:end);
-		   [work_folder, n_values] = strsplit(work_date);
+		   [work_folder, n_values] = strsplitMH(work_date);
            work_folder=char(work_folder);
         end
 		if model
 		   delim = strfind(line,':');
 		   model_date= line(delim+1:end);
-		   [model_folder, n_values] = strsplit(model_date);
+		   [model_folder, n_values] = strsplitMH(model_date);
            model_folder=char(model_folder);
         end
 		if buoy
 		   delim = strfind(line,':');
 		   buoy_date= line(delim+1:end);
-		   [buoy_path, n_values] = strsplit(buoy_date);
+		   [buoy_path, n_values] = strsplitMH(buoy_date);
            buoy_path=char(buoy_path);
         end
 		if plotpath
 		   delim = strfind(line,':');
 		   plot_path= line(delim+1:end);
-		   [plot_folder, n_values] = strsplit(plot_path);
+		   [plot_folder, n_values] = strsplitMH(plot_path);
            plot_folder=char(plot_folder);
         end
         if publishpath
 		   delim = strfind(line,':');
 		   publish_path1= line(delim+1:end);
-		   [publish, n_values] = strsplit(publish_path1);
+		   [publish, n_values] = strsplitMH(publish_path1);
            publish=char(publish);
         end
         if bapublish
 		   delim = strfind(line,':');
 		   bapublish= line(delim+1:end);
-		   [bapublish_folder, n_values] = strsplit(bapublish);
+		   [bapublish_folder, n_values] = strsplitMH(bapublish);
            bapublish_folder=char(bapublish_folder);
         end
 		if forecast
            delim = strfind(line,':');
 		   fore= line(delim+1:end);
-		   [forecast1, n_values] = strsplit(fore);
+		   [forecast1, n_values] = strsplitMH(fore);
            forecast1=char(forecast1);
         end 
         if daysbefore
            delim = strfind(line,':');
 		   days_before= line(delim+1:end);
-		   [date_vec, n_values] = strsplit(days_before);
+		   [date_vec, n_values] = strsplitMH(days_before);
            days_before=str2num(char(date_vec(1)));
         end 
         if daysafter
            delim = strfind(line,':');
 		   days_after= line(delim+1:end);
-		   [date_vec, n_values] = strsplit(days_after);
+		   [date_vec, n_values] = strsplitMH(days_after);
            days_after=str2num(char(date_vec(1)));
         end 
         if downdata
            delim = strfind(line,':');
 		   down= line(delim+1:end);
-		   [down_data, n_values] = strsplit(down);
+		   [down_data, n_values] = strsplitMH(down);
            down_data=char(down_data);
         end
        
         if plotlevel
            delim = strfind(line,':');
 		   plotle= line(delim+1:end);
-		   [plot_level, n_values] = strsplit(plotle);
+		   [plot_level, n_values] = strsplitMH(plotle);
            plot_level=char(plot_level);
         end
         if plottemp
            delim = strfind(line,':');
 		   plotte= line(delim+1:end);
-		   [plot_temp, n_values] = strsplit(plotte);
+		   [plot_temp, n_values] = strsplitMH(plotte);
            plot_temp=char(plot_temp);
         end
         if plotsal
            delim = strfind(line,':');
 		   plotsa= line(delim+1:end);
-		   [plot_sal, n_values] = strsplit(plotsa);
+		   [plot_sal, n_values] = strsplitMH(plotsa);
            plot_sal=char(plot_sal);
         end
         if plotvel
            delim = strfind(line,':');
 		   plotvel= line(delim+1:end);
-		   [plot_vel, n_values] = strsplit(plotvel);
+		   [plot_vel, n_values] = strsplitMH(plotvel);
            plot_vel=char(plot_vel);
         end
         if plotdata
            delim = strfind(line,':');
 		   graph= line(delim+1:end);
-		   [plot_data, n_values] = strsplit(graph);
+		   [plot_data, n_values] = strsplitMH(graph);
            plot_data=char(plot_data);
         end
 		if plotmodel
            delim = strfind(line,':');
 		   graphm= line(delim+1:end);
-		   [plot_model, n_values] = strsplit(graphm);
+		   [plot_model, n_values] = strsplitMH(graphm);
            plot_model=char(plot_model);
         end
         if statist
            delim = strfind(line,':');
 		   stat= line(delim+1:end);
-		   [statistic, n_values] = strsplit(stat);
+		   [statistic, n_values] = strsplitMH(stat);
            statistic=char(statistic);
         end
 		if int_ts
            delim = strfind(line,':');
 		   intts= line(delim+1:end);
-		   [vscale_int, n_values] = strsplit(intts);
+		   [vscale_int, n_values] = strsplitMH(intts);
            vscale_int=char(vscale_int);
 		   vscale_int=str2num(vscale_int);
         end
         if found_ini_date
            delim = strfind(line,':');
            ini_date1 = line(delim+1:end);
-           [date_vec, n_values] = strsplit(ini_date1);
+           [date_vec, n_values] = strsplitMH(ini_date1);
            y_ini = str2num(char(date_vec(1)));
            m_ini = str2num(char(date_vec(2)));
            d_ini = str2num(char(date_vec(3)));
@@ -167,7 +167,7 @@ mfid = fopen('MatlabTimeserie.dat');
 		 if found_end_date
             delim = strfind(line,':');
             end_date1 = line(delim+1:end);
-            [date_vec_end, n_values] = strsplit(end_date1);
+            [date_vec_end, n_values] = strsplitMH(end_date1);
             y_end = str2num(char(date_vec_end(1)));
             m_end = str2num(char(date_vec_end(2)));
             d_end = str2num(char(date_vec_end(3)));
@@ -314,13 +314,13 @@ if (strcmp(plot_png,'1') )
 end
 end
  
-catch
-     disp('an error occoured in main_validation_timeseries.m')
-     mfidi = fopen('error_timeseries.dat','a');
-     fprintf (mfidi,'%s\n','error in main_validation_timeseries.m');
-	 fprintf (mfidi,'%s\n','Matlab TimeSeries failed ');
-	 fclose(mfidi);
-end
+%  catch
+%       disp('an error occoured in main_validation_timeseries.m')
+%       mfidi = fopen('error_timeseries.dat','a');
+%       fprintf (mfidi,'%s\n','error in main_validation_timeseries.m');
+%  	 fprintf (mfidi,'%s\n','Matlab TimeSeries failed ');
+%  	 fclose(mfidi);
+% end
      mfidi = fopen('error_timeseries.dat','a');
 	 fprintf (mfidi,'%s\n','Matlab TimeSeries successfully executed');
 	 fclose(mfidi);

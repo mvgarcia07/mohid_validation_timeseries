@@ -23,6 +23,11 @@ dhour = ddate(:,9:10);
 dmin = ddate(:,11:12);
 dsec = ddate(:,13:14);
 
+%AG2018 - get depth vector
+varidd = netcdf.inqVarID(ncid,'DEPH');
+depth_value = netcdf.getVar(ncid,varidd,'double');
+depth_vvalue=depth_value(:,1);
+
 
 % initial date to be written in the output file
 initial_date=cat(2,num2str(str2num(dyear(1,:))),'. ',num2str(str2num(dmonth(1,:))),...
@@ -34,7 +39,7 @@ dseconds=(time_value-time_value(1))*86400;
 
 % output file name
 output_filename=netcdf.getAtt(ncid,netcdf.getConstant('NC_GLOBAL'),'id');
-file_out=[output_filename,extension];
+                                     
 
 
 
@@ -48,62 +53,67 @@ Varnum=length(finfo.Variables);
 longitude = netcdf.getAtt(ncid,netcdf.getConstant('NC_GLOBAL'),'geospatial_lon_min');
 latitude = netcdf.getAtt(ncid,netcdf.getConstant('NC_GLOBAL'),'geospatial_lat_min');
 
+%%Loop to get the names of the variables 
 iprop=1;
-for ivar=1:Varnum
-    if isavariable(finfo,ivar)
-    props{iprop}=finfo.Variables(ivar).Name;
-	varid = netcdf.inqVarID(ncid,props{iprop});
-	varid1=varid;
-	varid2=varid;
-	varid3=varid;
-	varid4=varid;
-	 if (varid ~= 6) %props{iprop}=='DC_REFERENCE'
-	 if  (varid1 ~= 11)
-	 if  (varid1 ~= 16)
-	 if  (varid2 ~= 17)
-	   if  (varid2 ~= 20)
-	   if  (varid3 ~= 23)
-	   if  (varid4 ~= 25)
-	   if  (varid4 ~= 26)
-	   if props{iprop}=='TIME' | props{iprop}=='DEPH'
-	     continue
-	   else
-         str=finfo.Variables(ivar).Attributes(1).Value;
-    % clean names from spaces, commas, slashes, and dots 
-         str=strrep(str,' ','_');
-         str=strrep(str,'/','_');
-         str=strrep(str,'.','_');
-         str=strrep(str,',','_');
-         names{iprop}=str;
+disp(['getting names of the variables in ',ncfile])
+for ii=1:Varnum
+    %% Nuevo algorithm that guarantee we are reading all variables
+    value = isavariable(finfo,ii);
+    if value==1    
+        props{iprop}=finfo.Variables(ii).Name;
+ 	    varid = netcdf.inqVarID(ncid,props{iprop});
+              
+              
+              
+              
+                                               
+                    
+                    
+                    
+                      
+                      
+                      
+                      
+                                                  
+              
+        
+        str=finfo.Variables(ii).Attributes(1).Value   ;    
+        disp([str])
+    %clean names from spaces, commas, slashes, and dots 
+          str=strrep(str,' ','_');
+          str=strrep(str,'/','_');
+          str=strrep(str,'.','_');
+          str=strrep(str,',','_');
+          names{iprop}=str;
          iprop=iprop+1;
-	   end
-	   end
-	   end
-	   end
-	   end
-	 end
-	 end
-	 end
-	 end
-	end
+    end
+  
 end
-%name_errorfile=cat(2, output_filename,'_error_timeseries.dat');       
-%mfidi = fopen(name_errorfile,'w');
+
+                                   
 mfidi = fopen('error_timeseries.dat','a');
+
+
+for j=1:length(depth_vvalue)
 % number of columns to be written, it increments if more variables are
 % found in the file
 col_num=1;
+%MG:2018: Initializing matrix to store all time series in ascii
+data=zeros(finfo.Variables(1).Dimensions.Length,length(props));
+%MG:2018: find depth
         
-for i=1:length(props); % start for loop over properties
+for i=1:length(props) % start for loop over properties
   prop=char(props(i));
   
   str1 = 'good';
-  %if strcmp(prop,'DEPH') | strcmp(prop,'TIME')
-   %  str1='bad';
- % end	 
-	try
+
+  % AG2018: removing this check to be able to read a file with diferent depths
+  % if strcmp(prop,'DEPH') | strcmp(prop,'TIME')
+%    str1='bad';
+%  end	 
+   try
 	  ID =netcdf.inqVarID(ncid,prop);
-      catch exception
+    catch exception
       if strcmp(exception.identifier,'MATLAB:imagesci:netcdf:libraryFailure') ||...
               strcmp(exception.identifier,'MATLAB:netcdf:inqVarID:enotvar:variableNotFound') ||...
               strcmp(exception.identifier,'MATLAB:netcdf:inqVarID:variableNotFound')
@@ -113,22 +123,22 @@ for i=1:length(props); % start for loop over properties
       end
               
     end  % end try
-  
-      if strcmp(str1,'good')
+   
+      if strcmp(str1,'good')   
         
-		varid = netcdf.inqVarID(ncid,prop);
-		var_value = netcdf.getVar(ncid,varid,'double');
-		
-		%[Nstr,Mstr]=size(var_value)
-		[Mstr,Nstr]=size(var_value);
-		if ((Mstr==1) & (Nstr>1))
-          data(:,col_num)=var_value';
-          col_num=col_num+1;
-		elseif ((Mstr~=1) | (Nstr==1))
-		  netcdf.close(ncid);
-		  fclose(mfidi);
-		  return
-		end
+		 varid = netcdf.inqVarID(ncid,prop);
+		 var_value = netcdf.getVar(ncid,varid,'double');
+         %AG2018:Get the variable at diferent depths
+         var_value1= var_value(j,:);        
+         [Mstr,Nstr]=size(var_value1);
+                           
+         data(:,col_num)=var_value1;
+         col_num=col_num+1;	
+                                
+                       
+                  
+          
+     
       end
               
            
@@ -158,10 +168,12 @@ format_string='%12.4f %8d %4d %4d %4d %4d %11.4f %28.16e';
  end
  format_string=cat(2,format_string,'\r\n');
  
- 
+ %AG2018 - get filename with depth
+file_out=[output_filename,'_',num2str(depth_vvalue(j)),'id',extension];
+
  % WRITE
   
-  fid = fopen( [output_filename,extension], 'w');
+  fid = fopen( file_out, 'w');
   fprintf(fid, 'Time Serie Results File coming from MyOcean Netcdf files\r\n');
   fprintf(fid,  cat(2,'NAME          :  ',ncfile,'\r\n'));
   fprintf(fid, 'LOCALIZATION_I          :  -9999\r\n');
@@ -198,30 +210,31 @@ fprintf(fid, '<EndTimeSerie>\r\n');
 
 
   fclose(fid);
-        
+       
   fclose(mfidi);
+
         
   netcdf.close(ncid);
 
-  
+end
   
        
-    
-  function flag=isavariable(finfo,varnum)
-      % flags the variables in the file
+  
+                                         
+                                       
 
-          if strcmp(finfo.Variables(varnum).Attributes(1).Value,'method of data processing')||...
-              strcmp(finfo.Variables(varnum).Attributes(1).Value,'Latitude of each location')||...
-              strcmp(finfo.Variables(varnum).Attributes(1).Value,'time')||...
-              strcmp(finfo.Variables(varnum).Attributes(1).Value,'Longitude of each location')||...
-              strcmp(finfo.Variables(varnum).Attributes(1).Value,'quality flag')||...
-              strcmp(finfo.Variables(varnum).Attributes(1).Value,'Depth of each measurement')||...
-              strcmp(finfo.Variables(varnum).Attributes(1).Value,'Location unique identifier in data centre')||...
-              strcmp(finfo.Variables(varnum).Attributes(1).Value,'Positioning system')
-            flag=0;
-          else
-            flag=1;
-          end
+                                                                                                 
+                                                                                                  
+                                                                             
+                                                                                                   
+                                                                                     
+                                                                                                  
+                                                                                                                  
+                                                                                      
+                   
+              
+                   
+             
           
   function row_indices=filtermatrix(matrix,treshold)
               

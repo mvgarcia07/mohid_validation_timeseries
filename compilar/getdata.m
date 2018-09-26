@@ -37,7 +37,7 @@ stareg_id='0';
                    delim = strfind(line,':');
 		           %station_name= line(delim+1:end);
 	               station_na= line(delim+1:end);
-		           [station, n_values] = strsplit(station_na);
+		           [station, n_values] = strsplitMH(station_na);
 				   if (n_values == 2) 
 				       station=strcat(station(1),{' '},station(2));
                    elseif (n_values == 3)
@@ -56,7 +56,7 @@ stareg_id='0';
        if stationorigin
                    delim = strfind(line,':');
 		           station_origin= line(delim+1:end);
-		           [staorigin, n_values] = strsplit(station_origin);
+		           [staorigin, n_values] = strsplitMH(station_origin);
                    staorigin=char(staorigin);
 				   
 				   if ((strcmp(staorigin,'Puertos') || strcmp(staorigin,'IH') || strcmp(staorigin,'MyOcean'))==0)
@@ -71,7 +71,7 @@ stareg_id='0';
        if stationregion
                    delim = strfind(line,':');
 		           station_reg= line(delim+1:end);
-		           [stareg, n_values] = strsplit(station_reg);
+		           [stareg, n_values] = strsplitMH(station_reg);
 				   stareg_id = '1';
                  
 				   if (n_values > 3)
@@ -86,7 +86,7 @@ stareg_id='0';
        if downstaname
                    delim = strfind(line,':');
 		           down_sta= line(delim+1:end);
-		           [downsta, n_values] = strsplit(down_sta);
+		           [downsta, n_values] = strsplitMH(down_sta);
                    downsta=char(downsta);
 				   if (n_values > 1)
                        mfidi = fopen('error_timeseries.dat','a');
